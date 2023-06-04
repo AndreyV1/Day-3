@@ -25,90 +25,151 @@ internal class Program
 
         };
 
-        void Employee()
+        int Y = 1;
+        while (Y == 1)
         {
-            Console.WriteLine("Employee");
-            foreach (var emp in employees)
-            {
-
-                Console.WriteLine($"Id: {employee.Id()} ФИО: {emp.Fio}, Зарплата: {emp.Salary}, Отдел: {emp.Department}");
-            }
+            Console.WriteLine();
+            Console.WriteLine("Веберите задание, варианты: 1, 21, 22, 23, 24, 25, 31, 32");
+            int viborz = Convert.ToInt32(Console.ReadLine());
+            if (viborz == 1) Zad1(1.1);
+            if (viborz == 21) Zad21();
+            if (viborz == 22) Zad22();
+            if (viborz == 23) Zad23();
+            if (viborz == 24) Zad24(1.1);
+            if (viborz == 25) Zad25();
+            if (viborz == 31) Zad31();
+            if (viborz == 32) Zad32();
         }
 
-        void TotalSalary()
-        {
-            Console.WriteLine("TotalSalary");
-            double summa = 0;
-            foreach (var emp in employees)
-            {
-                summa += emp.Salary;
-            }
-            Console.WriteLine($"Сумма затрат на зарплату в месяц: {summa}");
-        }
 
-        void MinSalary()
+
+        void Zad1(double argument)
         {
-            Console.WriteLine("MinSalary");
-            double min = 99999;
+            double pov = 0;
+            double ar = argument;
             foreach (var emp in employees)
             {
+                pov = emp.Salary * ar;
+                Console.WriteLine("Повышаем зараплату " + emp.Fio + " до " + pov);
+            }
+        }
+        void Zad21()
+        {
+            Console.WriteLine("Выберите отдел для определения минимальной зарплаты по отделу");
+            double vibor = Convert.ToDouble(Console.ReadLine());
+            double min = 9999999;
+            foreach (var emp in employees)
+            {
+
                 if (emp.Salary < min)
                 {
-                    min = emp.Salary;
-                }
-            }
-            Console.WriteLine("Минимальная зарплата " + min);
-        }
+                    if (emp.Department == vibor)
+                    {
+                        min = emp.Salary;
+                    }
 
-        void MaxSalary()
+                }
+
+            }
+            Console.WriteLine("Минимальная зарплата по выбранному отделу " + min);
+        }
+        void Zad22()
         {
-            Console.WriteLine("MaxSalary");
+            Console.WriteLine("Выберите отдел для определения максимальной зарплаты по отделу");
+            double vibor = Convert.ToDouble(Console.ReadLine());
             double max = 0;
             foreach (var emp in employees)
             {
+
                 if (emp.Salary > max)
                 {
-                    max = emp.Salary;
-                }
-            }
-            Console.WriteLine("Максимальная зарплата " + max);
-        }
+                    if (emp.Department == vibor)
+                    {
+                        max = emp.Salary;
+                    }
 
-        void AverageSalary()
+                }
+
+            }
+            Console.WriteLine("Максимальная зарплата по выбранному отделу " + max);
+        }
+        void Zad23()
         {
-            Console.WriteLine("AverageSalary");
+            Console.WriteLine("Выберите отдел для определения средней зарплаты по отделу");
             int count = 0;
             double summa = 0;
+            double vibor = Convert.ToDouble(Console.ReadLine());
             foreach (var emp in employees)
             {
-                count++;
-                summa += emp.Salary;
+                if (emp.Department == vibor)
+                {
+                    count++;
+                    summa += emp.Salary;
+                }
             }
 
-            Console.WriteLine($"Среднее значение зарплаты: {summa / count}");
+            Console.WriteLine($"Среднее значение зарплаты по выбранному отделу: {summa / count}");
         }
 
-        void FullName()
+        void Zad24(double argument)
         {
-            Console.WriteLine("FullName");
+            Console.WriteLine("Выберите отдел для увеличения зарплаты по отделу");
+            double vibor = Convert.ToDouble(Console.ReadLine());
+            double pov = 0;
+            double ar = argument;
             foreach (var emp in employees)
             {
-                Console.WriteLine("ФИО " + emp.Fio);
+                if (emp.Department == vibor)
+                {
+                    pov = emp.Salary * ar;
+                    Console.WriteLine("Повышаем зараплату по выбранному отделу " + emp.Fio + " до " + pov);
+                }
+
             }
-            Console.ReadKey();
+        }
+        void Zad25()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Выберите сотрудников какого отдела показать ");
+            double vibor = Convert.ToDouble(Console.ReadLine());
+            foreach (var emp in employees)
+            {
+                if (emp.Department == vibor)
+                {
+
+                    Console.WriteLine($"Id: {employee.Id()} ФИО: {emp.Fio}, Зарплата: {emp.Salary}");
+                }
+            }
+        }
+        void Zad31()
+        {
+
+            Console.WriteLine("Будет выведены зарплаты меньше чем : ");
+            double vibor = Convert.ToDouble(Console.ReadLine());
+            foreach (var emp in employees)
+            {
+                if (emp.Salary < vibor)
+                {
+
+                    Console.WriteLine($"Id: {employee.Id()} ФИО: {emp.Fio}, Зарплата: {emp.Salary}");
+                }
+            }
+        }
+        void Zad32()
+        {
+
+            Console.WriteLine("Будет выведены зарплаты больше чем : ");
+            double vibor = Convert.ToDouble(Console.ReadLine());
+            foreach (var emp in employees)
+            {
+                if (emp.Salary > vibor)
+                {
+
+                    Console.WriteLine($"Id: {employee.Id()} ФИО: {emp.Fio}, Зарплата: {emp.Salary}");
+                }
+            }
         }
 
-        Employee();
-        Console.WriteLine();
-        TotalSalary();
-        Console.WriteLine();
-        MinSalary();
-        Console.WriteLine();
-        MaxSalary();
-        Console.WriteLine();
-        AverageSalary();
-        Console.WriteLine();
-        FullName();
+        Console.ReadKey();
     }
 }
-
